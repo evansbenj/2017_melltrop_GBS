@@ -6,7 +6,12 @@ Working directory on info: `/net/infofile4-inside/volume1/scratch/ben/2017_mello
 
 # Demultiplex:
 
-/usr/local/bin/process_radtags -f C6GKHANXX_1_fastq.gz -i gzfastq -b barcodes_without_names -o ./samples/ -e EcoT22I -r -c -q --filter_illumina
+```
+/usr/local/bin/process_radtags -f C6GKHANXX_1_fastq.gz -i gzfastq -b barcodes_without_names -o ./samples_first_lane/ -e ecoT22I -r -c -q --filter_illumina
+```
+```
+/usr/local/bin/process_radtags -f C6GKHANXX_2_fastq.gz -i gzfastq -b barcodes_without_names -o ./samples_second_lane/ -e ecoT22I -r -c -q --filter_illumina
+```
 
 ```
 mv sample_AACT.fq 3896_dad1.fq
