@@ -3,10 +3,13 @@
 Working directory on info: `/net/infofile4-inside/volume1/scratch/ben/2017_mellotropGBS_from_2015`
 
 
-# Trommomatic
+# Trimmomatic
 
 ```
 java -jar ~/Trimmomatic-0.36/trimmomatic-0.36.jar SE -phred33 C6GKHANXX_1_fastq.gz C6GKHANXX_1_fastq.gz_trimmed.fq.gz -trimlog C6GKHANXX_1_fastq.gz_log.txt ILLUMINACLIP:/home/ben/Trimmomatic-0.36/adapters/TruSeq2-PE.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:36
+```
+```
+java -jar ~/Trimmomatic-0.36/trimmomatic-0.36.jar SE -phred33 C6GKHANXX_2_fastq.gz C6GKHANXX_2_fastq.gz_trimmed.fq.gz -trimlog C6GKHANXX_2_fastq.gz_log.txt ILLUMINACLIP:/home/ben/Trimmomatic-0.36/adapters/TruSeq2-PE.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:36
 ```
 
 # Demultiplex:
