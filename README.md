@@ -16,7 +16,10 @@ java -jar ~/Trimmomatic-0.36/trimmomatic-0.36.jar SE -phred33 C6GKHANXX_2_fastq.
 
 These are some quick notes about de-multipexing the mellotrop GBS data from a family.  These data were collected on two lanes that also included data from XB. Both lanes have the same samples with the same barcodes.  Both lanes are single end GBS data.  The file names are `C6GKHANXX_1_fastq.gz` and `C6GKHANXX_2_fastq.gz`.
 
-
+try this version because it may handle barcodes with variable lengths.
+```
+~/stacks-1.21/bin
+```
 
 ```
 /usr/local/bin/process_radtags -f C6GKHANXX_1_fastq.gz -i gzfastq -b barcodes_without_names_4mer -o ./samples_first_lane/ -e ecoT22I -c -q --filter_illumina
