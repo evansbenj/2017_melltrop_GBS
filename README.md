@@ -1,10 +1,19 @@
 # 2017_melltrop_GBS
 
-These are some quick notes about de-multipexing the mellotrop GBS data from a family.  These data were collected on two lanes that also included data from XB. Both lanes have the same samples with the same barcodes.  Both lanes are single end GBS data.  The file names are `C6GKHANXX_1_fastq.gz` and `C6GKHANXX_2_fastq.gz`.
-
 Working directory on info: `/net/infofile4-inside/volume1/scratch/ben/2017_mellotropGBS_from_2015`
 
+
+# Trommomatic
+
+```
+java -jar ~/Trimmomatic-0.36/trimmomatic-0.36.jar SE -phred33 C6GKHANXX_1_fastq.gz C6GKHANXX_1_fastq.gz_trimmed.fq.gz -trimlog C6GKHANXX_1_fastq.gz_log.txt ILLUMINACLIP:/home/ben/Trimmomatic-0.36/adapters/TruSeq2-PE.fa:2:30:10 SLIDINGWINDOW:4:15 MINLEN:36
+```
+
 # Demultiplex:
+
+These are some quick notes about de-multipexing the mellotrop GBS data from a family.  These data were collected on two lanes that also included data from XB. Both lanes have the same samples with the same barcodes.  Both lanes are single end GBS data.  The file names are `C6GKHANXX_1_fastq.gz` and `C6GKHANXX_2_fastq.gz`.
+
+
 
 ```
 /usr/local/bin/process_radtags -f C6GKHANXX_1_fastq.gz -i gzfastq -b barcodes_without_names_4mer -o ./samples_first_lane/ -e ecoT22I -c -q --filter_illumina
