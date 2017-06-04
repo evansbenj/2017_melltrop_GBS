@@ -128,3 +128,54 @@ mv sample_TTCCTGCA.fq 3897_momP1.fq
 mv sample_TGCCACCA.fq 3897_momP2.fq
 mv sample_TTATGGCA.fq blank.fq
 ```
+
+# Align to em to XT genome
+
+alignment_commando.sh:
+
+```
+#!/bin/bash                                                                                                          \
+                                                                                                                      
+
+path_to_bwa="/usr/local/bin"
+path_to_samtools="/usr/local/bin"
+path_to_data="./trimmed_mellotrop_demultiplexed_reads"
+path_to_chromosome="/net/infofile4-inside/volume1/scratch/ben/2017_mellotropGBS_from_2015/XT_version9.0"
+chromosome="Xtropicalis.v9.repeatMasked.fa"
+
+individuals="3799_dad.fq
+4170_girl.fq
+4174_boy.fq
+4178_girl.fq
+4182_girl.fq
+3800_mom.fq
+4171_boy.fq
+4175_girl.fq
+4179_boy.fq
+4183_girl.fq
+3810_boy.fq
+4172_boy.fq
+4176_boy.fq
+4180_girl.fq
+4184_girl.fq
+4169_girl.fq
+4173_boy.fq
+4177_girl.fq
+4181_boy.fq
+4185_girl.fq"
+
+for each_individual in $individuals
+do
+
+echo ${each_individual}
+    $path_to_bwa/bwa mem -M -t 16 $path_to_chromosome/$chromosome $path_to_data/${each_individual}_trimmed.fq.gz -R "\
+@RG\tID:FLOWCELL1.LANE1\tSM:${each_individual}.fq\tPL:illumina" > $path_to_data/${each_individual}_trimmed.sam
+    $path_to_samtools/samtools view -bt $path_to_chromosome/$chromosome -o $path_to_data/${each_individual}_trimmed.b\
+am $path_to_data/${each_individual}_trimmed.sam
+    $path_to_samtools/samtools sort $path_to_data/${each_individual}_trimmed.bam $path_to_data/${each_individual}_tri\
+mmed_sorted
+    $path_to_samtools/samtools index $path_to_data/${each_individual}_trimmed_sorted.bam
+    rm -f $path_to_data/${each_individual}_trimmed.bam $path_to_data/${each_individual}_trimmed.sam $path_to_data/${e\
+ach_individual}_trimmed.sai
+done
+```
