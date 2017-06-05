@@ -179,3 +179,9 @@ mmed_sorted
 ach_individual}_trimmed.sai
 done
 ```
+
+# Merge sorted bams and genotype
+```
+~/samtools_2016/bin/samtools mpileup -d8000 -ugf ../XT_version9.0/Xtropicalis.v9.repeatMasked.fa -t DP,AD *_sorted.bam | ~/samtools_2016/bcftools-1.3.1/bcftools call -V indels --format-fields GQ -m -O z | ~/samtools_2016/bcftools-1.3.1/bcftools filter -e 'FORMAT/GT = "." || FORMAT/DP < 10 || FORMAT/GQ < 20 || FORMAT/GQ = "."' -O z -o Xmello_to_STv9_merged_sorted.bam.vcf.gz
+```
+
